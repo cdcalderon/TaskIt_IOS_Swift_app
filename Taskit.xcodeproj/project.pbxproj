@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		07BF7A541A20527000841EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A531A20527000841EEC /* AppDelegate.swift */; };
-		07BF7A561A20527000841EEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A551A20527000841EEC /* ViewController.swift */; };
+		07BF7A561A20527000841EEC /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A551A20527000841EEC /* MainController.swift */; };
 		07BF7A591A20527000841EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BF7A571A20527000841EEC /* Main.storyboard */; };
 		07BF7A5B1A20527000841EEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BF7A5A1A20527000841EEC /* Images.xcassets */; };
 		07BF7A5E1A20527000841EEC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07BF7A5C1A20527000841EEC /* LaunchScreen.xib */; };
 		07BF7A6A1A20527000841EEC /* TaskitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A691A20527000841EEC /* TaskitTests.swift */; };
+		07BF7A761A20DC9800841EEC /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A751A20DC9800841EEC /* ActivityCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,14 @@
 		07BF7A4E1A20527000841EEC /* Taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BF7A521A20527000841EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BF7A531A20527000841EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07BF7A551A20527000841EEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07BF7A551A20527000841EEC /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		07BF7A581A20527000841EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07BF7A5A1A20527000841EEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		07BF7A5D1A20527000841EEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		07BF7A631A20527000841EEC /* TaskitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BF7A681A20527000841EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BF7A691A20527000841EEC /* TaskitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitTests.swift; sourceTree = "<group>"; };
+		07BF7A751A20DC9800841EEC /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				07BF7A531A20527000841EEC /* AppDelegate.swift */,
-				07BF7A551A20527000841EEC /* ViewController.swift */,
+				07BF7A551A20527000841EEC /* MainController.swift */,
+				07BF7A751A20DC9800841EEC /* ActivityCell.swift */,
 				07BF7A571A20527000841EEC /* Main.storyboard */,
 				07BF7A5A1A20527000841EEC /* Images.xcassets */,
 				07BF7A5C1A20527000841EEC /* LaunchScreen.xib */,
@@ -212,7 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BF7A561A20527000841EEC /* ViewController.swift in Sources */,
+				07BF7A761A20DC9800841EEC /* ActivityCell.swift in Sources */,
+				07BF7A561A20527000841EEC /* MainController.swift in Sources */,
 				07BF7A541A20527000841EEC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +411,7 @@
 				07BF7A6F1A20527000841EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		07BF7A701A20527000841EEC /* Build configuration list for PBXNativeTarget "TaskitTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +420,7 @@
 				07BF7A721A20527000841EEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
