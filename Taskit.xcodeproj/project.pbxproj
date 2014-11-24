@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0769A98A1A2225620039D703 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769A9891A2225620039D703 /* Date.swift */; };
+		0769A98C1A224E9E0039D703 /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769A98B1A224E9E0039D703 /* AddActivityViewController.swift */; };
 		07BF7A541A20527000841EEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A531A20527000841EEC /* AppDelegate.swift */; };
 		07BF7A561A20527000841EEC /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A551A20527000841EEC /* MainController.swift */; };
 		07BF7A591A20527000841EEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BF7A571A20527000841EEC /* Main.storyboard */; };
@@ -15,6 +17,7 @@
 		07BF7A6A1A20527000841EEC /* TaskitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A691A20527000841EEC /* TaskitTests.swift */; };
 		07BF7A761A20DC9800841EEC /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A751A20DC9800841EEC /* ActivityCell.swift */; };
 		07BF7A781A20F33700841EEC /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A771A20F33700841EEC /* ActivityModel.swift */; };
+		07BF7A7A1A20F6B100841EEC /* ActivityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BF7A791A20F6B100841EEC /* ActivityDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0769A9891A2225620039D703 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		0769A98B1A224E9E0039D703 /* AddActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
 		07BF7A4E1A20527000841EEC /* Taskit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BF7A521A20527000841EEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BF7A531A20527000841EEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +45,7 @@
 		07BF7A691A20527000841EEC /* TaskitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskitTests.swift; sourceTree = "<group>"; };
 		07BF7A751A20DC9800841EEC /* ActivityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		07BF7A771A20F33700841EEC /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		07BF7A791A20F6B100841EEC /* ActivityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +89,10 @@
 			children = (
 				07BF7A531A20527000841EEC /* AppDelegate.swift */,
 				07BF7A551A20527000841EEC /* MainController.swift */,
+				07BF7A791A20F6B100841EEC /* ActivityDetailViewController.swift */,
+				0769A98B1A224E9E0039D703 /* AddActivityViewController.swift */,
 				07BF7A771A20F33700841EEC /* ActivityModel.swift */,
+				0769A9891A2225620039D703 /* Date.swift */,
 				07BF7A751A20DC9800841EEC /* ActivityCell.swift */,
 				07BF7A571A20527000841EEC /* Main.storyboard */,
 				07BF7A5A1A20527000841EEC /* Images.xcassets */,
@@ -218,8 +227,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07BF7A7A1A20F6B100841EEC /* ActivityDetailViewController.swift in Sources */,
+				0769A98A1A2225620039D703 /* Date.swift in Sources */,
 				07BF7A781A20F33700841EEC /* ActivityModel.swift in Sources */,
 				07BF7A761A20DC9800841EEC /* ActivityCell.swift in Sources */,
+				0769A98C1A224E9E0039D703 /* AddActivityViewController.swift in Sources */,
 				07BF7A561A20527000841EEC /* MainController.swift in Sources */,
 				07BF7A541A20527000841EEC /* AppDelegate.swift in Sources */,
 			);

@@ -11,5 +11,5 @@ import Foundation
 struct ActivityModel{
     var activity: String
     var subActivity: String
-    var date: String
+    var date: NSDate
 }

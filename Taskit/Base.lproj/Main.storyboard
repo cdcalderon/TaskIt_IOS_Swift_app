@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Activities-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Taskit" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,22 +55,164 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="xK5-hu-qCq"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="GeE-GU-0zY"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="yeM-hi-AyK"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="gEV-DZ-BUP"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ZDa-xF-Qfw"/>
+                    <navigationItem key="navigationItem" title="Activities" id="ZDa-xF-Qfw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kqz-a8-ZkG">
+                            <connections>
+                                <action selector="addButtonTapped:" destination="BYZ-38-t0r" id="YpN-Hm-i6K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="tableView" destination="r4u-xD-LRT" id="BSq-7Y-oDV"/>
+                        <outlet property="tableView" destination="r4u-xD-LRT" id="ec9-kc-5jl"/>
+                        <segue destination="dJd-dd-SzJ" kind="show" identifier="showActivityDetail" id="eiU-bp-SDj"/>
+                        <segue destination="y0q-zy-dIP" kind="presentation" identifier="showActivityAdd" id="3vn-l9-G1b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="757" y="336"/>
+        </scene>
+        <!--Add Activity View Controller-->
+        <scene sceneID="E7B-T8-Srj">
+            <objects>
+                <viewController id="y0q-zy-dIP" customClass="AddActivityViewController" customModule="Taskit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j0x-5D-CSb"/>
+                        <viewControllerLayoutGuide type="bottom" id="28b-qp-b7X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ka6-4O-dhr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0AN-20-W1P">
+                                <rect key="frame" x="11" y="87" width="348" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wW8-18-ufn">
+                                <rect key="frame" x="11" y="165" width="348" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gk8-RM-LqC">
+                                <rect key="frame" x="0.0" y="240" width="414" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="438457678.623649">
+                                    <!--2014-11-23 17:47:58 +0000-->
+                                </date>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asl-bJ-ELy">
+                                <rect key="frame" x="16" y="65" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SubActivity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sa-Dn-rs9">
+                                <rect key="frame" x="16" y="142" width="87" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kr-tA-gmG">
+                                <rect key="frame" x="16" y="211" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJQ-0J-vTe">
+                                <rect key="frame" x="16" y="14" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="y0q-zy-dIP" eventType="touchUpInside" id="gYK-Gq-ghX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McD-LP-qkF">
+                                <rect key="frame" x="295" y="14" width="64" height="30"/>
+                                <state key="normal" title="Add Task">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addActivityButtonTapped:" destination="y0q-zy-dIP" eventType="touchUpInside" id="Rnq-4T-NJg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="activityTextField" destination="0AN-20-W1P" id="4gv-dO-Gb8"/>
+                        <outlet property="dueDateTextField" destination="Gk8-RM-LqC" id="ef7-qh-gGJ"/>
+                        <outlet property="subActivityTextField" destination="wW8-18-ufn" id="m7P-IN-lqV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8vu-TB-PXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1293" y="777"/>
+        </scene>
+        <!--Detail-->
+        <scene sceneID="Epk-9t-2Ii">
+            <objects>
+                <viewController id="dJd-dd-SzJ" customClass="ActivityDetailViewController" customModule="Taskit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q28-oO-RXG"/>
+                        <viewControllerLayoutGuide type="bottom" id="8ua-D6-pZz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lAO-za-oe5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Activity" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qgn-0O-9ax">
+                                <rect key="frame" x="16" y="111" width="292" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SubActivity" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KvA-ch-3Po">
+                                <rect key="frame" x="16" y="174" width="292" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="A5G-ka-N3e">
+                                <rect key="frame" x="0.0" y="244" width="414" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="438369636.01468998">
+                                    <!--2014-11-22 17:20:36 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detail" id="Jr8-md-Jbg">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Ao8-aP-atN">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="dJd-dd-SzJ" id="MoB-1U-db4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="vcM-8X-NeL">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="dJd-dd-SzJ" id="IBa-pC-acg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="activityTextField" destination="qgn-0O-9ax" id="FZb-A6-vz5"/>
+                        <outlet property="dueDatePicker" destination="A5G-ka-N3e" id="z4z-Gf-Yog"/>
+                        <outlet property="subActivityTextField" destination="KvA-ch-3Po" id="jnQ-Nd-yee"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Dy-Ld-9OT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1322" y="-51"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VaY-qO-7Wa">
