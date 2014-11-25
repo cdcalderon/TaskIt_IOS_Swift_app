@@ -22,10 +22,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let date2 = Date.from(year: 2014, month: 7, day: 13)
         let date3 = Date.from(year: 2014, month: 5, day: 10)
         // Do any additional setup after loading the view, typically from a nib.
-        let activity1: ActivityModel = ActivityModel(activity: "Limpiar Cuarto", subActivity: "ropa, cama, escritori", date: date1)
-        let activity2: ActivityModel = ActivityModel(activity: "wash dishes", subActivity: "acomodar platos", date: date2)
+        let activity1: ActivityModel = ActivityModel(activity: "Do Homework", subActivity: "Math Problems", date: date1)
+        let activity2: ActivityModel = ActivityModel(activity: "Clean Room", subActivity: "Bed, Floor, Desk", date: date2)
 
-        activityArray = [activity1, activity2, ActivityModel(activity: "study", subActivity: "math", date: date3)]
+        activityArray = [activity1, activity2, ActivityModel(activity: "Wash Dishes", subActivity: "Dishes", date: date3)]
         
     }
     

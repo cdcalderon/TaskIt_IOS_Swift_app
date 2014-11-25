@@ -45,8 +45,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="tintColor" red="0.7923414689781022" green="0.9371293339416058" blue="0.84688640510948676" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.79234146900000002" green="0.93712933389999997" blue="0.84688640510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="activityLabel" destination="yMF-tF-Jkp" id="z1t-Nu-1uS"/>
                                             <outlet property="dateLabel" destination="7io-r9-8P4" id="Rlr-a4-pmb"/>
@@ -136,8 +137,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McD-LP-qkF">
-                                <rect key="frame" x="295" y="14" width="64" height="30"/>
-                                <state key="normal" title="Add Task">
+                                <rect key="frame" x="276" y="14" width="83" height="30"/>
+                                <state key="normal" title="Add Activity">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
