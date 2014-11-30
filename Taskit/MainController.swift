@@ -86,12 +86,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
 
-    //UITableViewDelagate Implemantation
+    //UITableViewDelagate Implementation
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println(indexPath.row)
         performSegueWithIdentifier("showActivityDetail", sender: self)
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Activities to do"
+        } else {
+            return "Completed Activities"
+        }
+    }
     
     //Note: Activity Helper Functions, move this to a service class
     
