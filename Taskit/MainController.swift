@@ -104,6 +104,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let currentActivity = allActivitiesArray[indexPath.section][indexPath.row]
+        
+        let completedTask = ActivityModel(activity: currentActivity.activity, subActivity: currentActivity.subActivity, date: currentActivity.date, isComplete: true)
+        
+        allActivitiesArray[indexPath.section].removeAtIndex(indexPath.row)
+        allActivitiesArray[1].append(completedTask)
+        
+        tableView.reloadData()
+    }
+    
     //Note: Activity Helper Functions, move this to a service class
     
     func sortByDate(activityone: ActivityModel, activitytwo: ActivityModel) -> Bool{
