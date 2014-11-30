@@ -12,4 +12,5 @@ struct ActivityModel{
     var activity: String
     var subActivity: String
     var date: NSDate
+    var isComplete: Bool
 }

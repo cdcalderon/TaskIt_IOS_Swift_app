@@ -35,8 +35,8 @@ class ActivityDetailViewController: UIViewController {
     }
 
     @IBAction func doneButtonTapped(sender: AnyObject) {
-        var activity = ActivityModel(activity: activityTextField.text, subActivity: subActivityTextField.text, date: dueDatePicker.date)
-        mainVC.activityArray[mainVC.tableView.indexPathForSelectedRow()!.row] = activity
+        var activity = ActivityModel(activity: activityTextField.text, subActivity: subActivityTextField.text, date: dueDatePicker.date, isComplete: false)
+        mainVC.allActivitiesArray[0][mainVC.tableView.indexPathForSelectedRow()!.row] = activity
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

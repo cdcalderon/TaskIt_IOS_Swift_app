@@ -12,9 +12,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     @IBOutlet weak var tableView: UITableView!
-    var activityArray: [ActivityModel] = []
-    //var activityArrayDic:[Dictionary<String, String>] = []
     
+    //var activityArrayDic:[Dictionary<String, String>] = []
+    var allActivitiesArray: [[ActivityModel]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,18 +22,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let date2 = Date.from(year: 2014, month: 7, day: 13)
         let date3 = Date.from(year: 2014, month: 5, day: 10)
         // Do any additional setup after loading the view, typically from a nib.
-        let activity1: ActivityModel = ActivityModel(activity: "Do Homework", subActivity: "Math Problems", date: date1)
-        let activity2: ActivityModel = ActivityModel(activity: "Clean Room", subActivity: "Bed, Floor, Desk", date: date2)
+        let activity1: ActivityModel = ActivityModel(activity: "Do Homework", subActivity: "Math Problems", date: date1, isComplete: false)
+        let activity2: ActivityModel = ActivityModel(activity: "Clean Room", subActivity: "Bed, Floor, Desk", date: date2, isComplete: false)
 
-        activityArray = [activity1, activity2, ActivityModel(activity: "Wash Dishes", subActivity: "Dishes", date: date3)]
+        let incompleteActivityArray = [activity1, activity2, ActivityModel(activity: "Wash Dishes", subActivity: "Dishes", date: date3, isComplete: false)]
         
+        let completedActivityArray = [ActivityModel(activity: "Program", subActivity: "Swift", date: date2, isComplete: true)]
+        
+        allActivitiesArray = [incompleteActivityArray, completedActivityArray]
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showActivityDetail" {
             let activityDetailVC: ActivityDetailViewController = segue.destinationViewController as ActivityDetailViewController
             let indexPath = tableView.indexPathForSelectedRow()
-            activityDetailVC.detailActivityModel =  activityArray[indexPath!.row]
+            activityDetailVC.detailActivityModel =  allActivitiesArray[indexPath!.section][indexPath!.row]
             activityDetailVC.mainVC = self
         }
         else if segue.identifier == "showActivityAdd" {
@@ -44,6 +47,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        for var i = 0; i < allActivitiesArray.count ; i++ {
+            allActivitiesArray[i] =  allActivitiesArray[i].sorted({
+                $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970
+            })
+        }
+        
         self.tableView.reloadData()
     }
     
@@ -59,14 +68,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     //UITableViewSource Implementation
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+       return allActivitiesArray.count
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activityArray.count
+        return allActivitiesArray[section].count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         println(indexPath.row)
         var cell: ActivityCell =  tableView.dequeueReusableCellWithIdentifier("activityTempCell") as ActivityCell
-        let activ = activityArray[indexPath.row]
+        let activ = allActivitiesArray[indexPath.section][indexPath.row]
         cell.activityLabel.text = activ.activity
         cell.descriptionLabel.text = activ.subActivity
         cell.dateLabel.text = Date.toString(date: activ.date)
@@ -79,6 +92,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         performSegueWithIdentifier("showActivityDetail", sender: self)
     }
     
+    
+    //Note: Activity Helper Functions, move this to a service class
+    
+    func sortByDate(activityone: ActivityModel, activitytwo: ActivityModel) -> Bool{
+        return activityone.date.timeIntervalSince1970 < activitytwo.date.timeIntervalSince1970
+    }
     
 }
 

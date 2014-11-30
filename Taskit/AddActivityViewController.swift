@@ -31,9 +31,9 @@ class AddActivityViewController: UIViewController {
     }
 
     @IBAction func addActivityButtonTapped(sender: AnyObject) {
-        var activity = ActivityModel(activity: activityTextField.text, subActivity: subActivityTextField.text, date: dueDateTextField.date)
+        var activity = ActivityModel(activity: activityTextField.text, subActivity: subActivityTextField.text, date: dueDateTextField.date, isComplete: false)
     
-        mainVC.activityArray.append(activity)
+        mainVC.allActivitiesArray[0].append(activity)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
