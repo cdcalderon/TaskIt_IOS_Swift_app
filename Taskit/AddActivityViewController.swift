@@ -7,10 +7,9 @@
 //
 
 import UIKit
-
+import CoreData
 class AddActivityViewController: UIViewController {
 
-    var mainVC: ViewController!
     
     @IBOutlet weak var activityTextField: UITextField!
     @IBOutlet weak var subActivityTextField: UITextField!
@@ -31,9 +30,33 @@ class AddActivityViewController: UIViewController {
     }
 
     @IBAction func addActivityButtonTapped(sender: AnyObject) {
-        var activity = ActivityModel(activity: activityTextField.text, subActivity: subActivityTextField.text, date: dueDateTextField.date, isComplete: false)
+        let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        
+        let managedObjectContext = appDelegate.managedObjectContext
+        
+        
+        
+        let entityDescription = NSEntityDescription.entityForName("ActivityModel", inManagedObjectContext: managedObjectContext!)
+        
+        
+        
+        let activity = ActivityModel(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
+        
+        activity.activity = activityTextField.text
+        activity.subActivity = subActivityTextField.text
+        activity.date = dueDateTextField.date
+        activity.isComplete = false
+        
+        appDelegate.saveContext()
+        
+        var request = NSFetchRequest(entityName: "ActivityModel")
+        var error: NSError? = nil
+        var results: NSArray = managedObjectContext!.executeFetchRequest(request, error: &error)!
     
-        mainVC.allActivitiesArray[0].append(activity)
+        for res in results {
+            println(res)
+        }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

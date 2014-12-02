@@ -7,53 +7,39 @@
 //
 
 import UIKit
+import CoreData
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate{
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-
-    
     @IBOutlet weak var tableView: UITableView!
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
+    var fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController()
     
-    //var activityArrayDic:[Dictionary<String, String>] = []
-    var allActivitiesArray: [[ActivityModel]] = []
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         
-        let date1 = Date.from(year: 2014, month: 5, day: 14)
-        let date2 = Date.from(year: 2014, month: 7, day: 13)
-        let date3 = Date.from(year: 2014, month: 5, day: 10)
-        // Do any additional setup after loading the view, typically from a nib.
-        let activity1: ActivityModel = ActivityModel(activity: "Do Homework", subActivity: "Math Problems", date: date1, isComplete: false)
-        let activity2: ActivityModel = ActivityModel(activity: "Clean Room", subActivity: "Bed, Floor, Desk", date: date2, isComplete: false)
-
-        let incompleteActivityArray = [activity1, activity2, ActivityModel(activity: "Wash Dishes", subActivity: "Dishes", date: date3, isComplete: false)]
-        
-        let completedActivityArray = [ActivityModel(activity: "Program", subActivity: "Swift", date: date2, isComplete: true)]
-        
-        allActivitiesArray = [incompleteActivityArray, completedActivityArray]
+        fetchedResultsController = getFetchedResultController()
+        fetchedResultsController.delegate = self
+        fetchedResultsController.performFetch(nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showActivityDetail" {
             let activityDetailVC: ActivityDetailViewController = segue.destinationViewController as ActivityDetailViewController
             let indexPath = tableView.indexPathForSelectedRow()
-            activityDetailVC.detailActivityModel =  allActivitiesArray[indexPath!.section][indexPath!.row]
-            activityDetailVC.mainVC = self
+            activityDetailVC.detailActivityModel =  fetchedResultsController.objectAtIndexPath(indexPath!) as ActivityModel
         }
         else if segue.identifier == "showActivityAdd" {
             let addActivityVC: AddActivityViewController = segue.destinationViewController as AddActivityViewController
-            addActivityVC.mainVC = self
         }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        for var i = 0; i < allActivitiesArray.count ; i++ {
-            allActivitiesArray[i] =  allActivitiesArray[i].sorted({
-                $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970
-            })
-        }
-        
-        self.tableView.reloadData()
+//        for var i = 0; i < allActivitiesArray.count ; i++ {
+//            allActivitiesArray[i] =  allActivitiesArray[i].sorted({
+//                $0.date.timeIntervalSince1970 < $1.date.timeIntervalSince1970
+//            })
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,23 +52,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.performSegueWithIdentifier("showActivityAdd", sender: self)
     }
     
-    
     //UITableViewSource Implementation
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-       return allActivitiesArray.count
+       return fetchedResultsController.sections!.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allActivitiesArray[section].count
+        return fetchedResultsController.sections![section].numberOfObjects
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println(indexPath.row)
-        var cell: ActivityCell =  tableView.dequeueReusableCellWithIdentifier("activityTempCell") as ActivityCell
-        let activ = allActivitiesArray[indexPath.section][indexPath.row]
-        cell.activityLabel.text = activ.activity
-        cell.descriptionLabel.text = activ.subActivity
-        cell.dateLabel.text = Date.toString(date: activ.date)
+        let thisTask = fetchedResultsController.objectAtIndexPath(indexPath) as ActivityModel
+        
+        println(thisTask)
+        
+        var cell: ActivityCell = tableView.dequeueReusableCellWithIdentifier("activityTempCell") as ActivityCell
+        
+        cell.activityLabel.text = thisTask.activity
+        cell.descriptionLabel.text = thisTask.subActivity
+        cell.dateLabel.text = Date.toString(date: thisTask.date)
+        
         return cell
     }
 
@@ -105,20 +94,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let currentActivity = allActivitiesArray[indexPath.section][indexPath.row]
+        let currentActivity = fetchedResultsController.objectAtIndexPath(indexPath) as ActivityModel
         
-        let completedTask = ActivityModel(activity: currentActivity.activity, subActivity: currentActivity.subActivity, date: currentActivity.date, isComplete: true)
-        
-        allActivitiesArray[indexPath.section].removeAtIndex(indexPath.row)
-        allActivitiesArray[1].append(completedTask)
-        
+        if indexPath.section == 0 {
+            currentActivity.isComplete = true
+
+        }else if indexPath.section == 1 {
+            currentActivity.isComplete = false
+        }
+        (UIApplication.sharedApplication().delegate as AppDelegate).saveContext()
+    }
+    
+    // NSFetchedResultsControllerDelegate
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
         tableView.reloadData()
     }
     
-    //Note: Activity Helper Functions, move this to a service class
+    // Sort Descriptor Helper
     
-    func sortByDate(activityone: ActivityModel, activitytwo: ActivityModel) -> Bool{
-        return activityone.date.timeIntervalSince1970 < activitytwo.date.timeIntervalSince1970
+    func activityFetchRequest() -> NSFetchRequest {
+        let fetchRequest = NSFetchRequest(entityName: "ActivityModel")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        
+        let completedDescriptor = NSSortDescriptor(key: "isComplete", ascending: true)
+        fetchRequest.sortDescriptors = [completedDescriptor, sortDescriptor]
+        
+        return fetchRequest
+    }
+    
+    func getFetchedResultController() -> NSFetchedResultsController {
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: activityFetchRequest(), managedObjectContext: managedObjectContext, sectionNameKeyPath: "isComplete", cacheName: nil)
+        
+        return fetchedResultsController
     }
     
 }

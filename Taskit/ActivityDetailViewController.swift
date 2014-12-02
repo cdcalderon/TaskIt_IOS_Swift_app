@@ -11,7 +11,6 @@ import UIKit
 class ActivityDetailViewController: UIViewController {
 
     var detailActivityModel: ActivityModel!
-    var mainVC: ViewController!
     
     @IBOutlet weak var activityTextField: UITextField!
     @IBOutlet weak var subActivityTextField: UITextField!
@@ -35,8 +34,14 @@ class ActivityDetailViewController: UIViewController {
     }
 
     @IBAction func doneButtonTapped(sender: AnyObject) {
-        var activity = ActivityModel(activity: activityTextField.text, subActivity: subActivityTextField.text, date: dueDatePicker.date, isComplete: false)
-        mainVC.allActivitiesArray[0][mainVC.tableView.indexPathForSelectedRow()!.row] = activity
+        let appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        detailActivityModel.activity = activityTextField.text
+        detailActivityModel.subActivity = subActivityTextField.text
+        detailActivityModel.date = dueDatePicker.date
+        detailActivityModel.isComplete = detailActivityModel.isComplete
+        
+        appDelegate.saveContext()
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
 }
